@@ -1,0 +1,87 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="@drawable/gradient_background"
+    tools:context=".LoginActivity">
+
+    <ImageView
+        android:id="@+id/ic_ref"
+        android:layout_width="127dp"
+        android:layout_height="118dp"
+        android:layout_marginStart="148dp"
+        android:layout_marginTop="88dp"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        app:srcCompat="@drawable/ic_refrigerator"
+        app:tint="#FFFFFF" />
+
+    <EditText
+        android:id="@+id/et_id"
+        android:layout_width="240dp"
+        android:layout_height="48dp"
+        android:layout_marginStart="84dp"
+        android:layout_marginTop="56dp"
+        android:background="@drawable/rectangle"
+        android:backgroundTint="#FFFFFF"
+        android:drawableStart="@drawable/ic_user"
+        android:drawableTint="#FFFFFF"
+        android:ems="10"
+        android:gravity="center"
+        android:inputType="textPersonName"
+        android:textColor="#4587a7"
+        android:textCursorDrawable="@null"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/ic_ref"
+        tools:ignore="SpeakableTextPresentCheck" />
+
+    <EditText
+        android:id="@+id/et_pw"
+        android:layout_width="240dp"
+        android:layout_height="48dp"
+        android:layout_marginTop="32dp"
+        android:background="@drawable/rectangle"
+        android:backgroundTint="#FFFFFF"
+        android:drawableStart="@drawable/ic_lock"
+        android:drawableTint="#FFFFFF"
+        android:ems="10"
+        android:gravity="center"
+        android:inputType="numberPassword"
+        android:textColor="#4587a7"
+        android:textCursorDrawable="@null"
+        app:layout_constraintEnd_toEndOf="@+id/et_id"
+        app:layout_constraintStart_toStartOf="@+id/et_id"
+        app:layout_constraintTop_toBottomOf="@+id/et_id" />
+
+    <Button
+        android:id="@+id/btn_login"
+        android:layout_width="100dp"
+        android:layout_height="48dp"
+        android:layout_marginStart="60dp"
+        android:layout_marginTop="48dp"
+        android:background="#00000000"
+        android:clickable="true"
+        android:text="LOGIN"
+        android:textColor="#FFFFFF"
+        android:textSize="18dp"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/et_pw" />
+
+    <Button
+        android:id="@+id/btn_register"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="64dp"
+        android:layout_marginTop="48dp"
+        android:background="#00000000"
+        android:clickable="true"
+        android:text="REGISTER"
+        android:textColor="#FFFFFF"
+        android:textSize="18dp"
+        app:layout_constraintStart_toEndOf="@+id/btn_login"
+        app:layout_constraintTop_toBottomOf="@+id/et_pw" />
+
+
+</androidx.constraintlayout.widget.ConstraintLayout>
