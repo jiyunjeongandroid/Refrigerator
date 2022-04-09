@@ -7,21 +7,21 @@ import android.database.sqlite.SQLiteOpenHelper;
 import androidx.annotation.Nullable;
 
 public class DbHelper extends SQLiteOpenHelper {
-    public static DbHelper sInstance; // 1개의 instance만
+    public static DbHelper sInstance;
     public static final int DB_VERSION = 1;
     private static final String DB_NAME = "list.db"; // File name
     private static final String SQL_CREATE_ENTRIES =
             String.format("CREATE TABLE %s (%s INTEGER PRIMARY KEY AUTOINCREMENT, %s TEXT, %s TEXT, %s TEXT, %s TEXT, %s TEXT)",
-                    List.Entry.TABLE_NAME,
-                    List.Entry._ID,
-                    List.Entry.COLUMN_NAME_ID,
-                    List.Entry.COLUMN_NAME_PW,
-                    List.Entry.COLUMN_NAME_NAME,
-                    List.Entry.COLUMN_NAME_DATE,
-                    List.Entry.COLUMN_NAME_AMOUNT);
+                    FoodList.Entry.TABLE_NAME,
+                    FoodList.Entry._ID,
+                    FoodList.Entry.COLUMN_NAME_ID,
+                    FoodList.Entry.COLUMN_NAME_PW,
+                    FoodList.Entry.COLUMN_NAME_NAME,
+                    FoodList.Entry.COLUMN_NAME_DATE,
+                    FoodList.Entry.COLUMN_NAME_AMOUNT);
 
     public static final String SQL_DELETE_ENTRIES =
-            "DROP TABLE IF EXITS " + List.Entry.TABLE_NAME;
+            "DROP TABLE IF EXISTS " + FoodList.Entry.TABLE_NAME;
 
     public static DbHelper getInstance(Context context) {
         if(sInstance == null) {

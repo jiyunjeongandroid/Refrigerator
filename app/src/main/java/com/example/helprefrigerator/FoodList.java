@@ -2,8 +2,8 @@ package com.example.helprefrigerator;
 
 import android.provider.BaseColumns;
 
-public class List {
-    private List() { }
+public class FoodList {
+    private FoodList() { }
 
     public static class Entry implements BaseColumns {
         public static final String TABLE_NAME = "list";

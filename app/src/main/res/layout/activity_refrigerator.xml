@@ -4,6 +4,67 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
+    android:background="@drawable/gradient_refrigerator"
     tools:context=".Refrigerator">
+
+    <TextView
+        android:id="@+id/txt_refrigerator"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="REGRIGERATOR"
+        android:textColor="#4587a7"
+        android:textSize="26dp"
+        app:layout_constraintBottom_toTopOf="@+id/sv_refrigerator"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        android:backgroundTint="#00000000"/>
+
+
+    <ScrollView
+        android:id="@+id/sv_refrigerator"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:layout_marginTop="70dp"
+        android:layout_marginBottom="100dp"
+        android:background="#00000000"
+        android:backgroundTint="#00000000"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent">
+
+
+    </ScrollView>
+
+    <ImageButton
+        android:id="@+id/btn_search"
+        android:layout_width="54dp"
+        android:layout_height="48dp"
+        android:layout_marginStart="112dp"
+        android:layout_marginTop="16dp"
+        android:background="#00000000"
+        android:clickable="true"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/sv_refrigerator"
+        app:srcCompat="@drawable/ic_search"
+        app:tint="#4587a7"
+        tools:ignore="SpeakableTextPresentCheck" />
+
+    <ImageButton
+        android:id="@+id/btn_plus"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="84dp"
+        android:layout_marginTop="16dp"
+        android:background="#00000000"
+        android:clickable="true"
+        app:layout_constraintStart_toEndOf="@+id/btn_search"
+        app:layout_constraintTop_toBottomOf="@+id/sv_refrigerator"
+        app:srcCompat="@drawable/ic_harvest"
+        app:tint="#4587a7"
+        tools:ignore="SpeakableTextPresentCheck" />
+
+
 
 </androidx.constraintlayout.widget.ConstraintLayout>
