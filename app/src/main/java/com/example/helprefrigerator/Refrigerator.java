@@ -1,5 +1,6 @@
 package com.example.helprefrigerator;
 
+import androidx.annotation.NonNull;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.recyclerview.widget.GridLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
@@ -9,22 +10,25 @@ import android.content.Intent;
 import android.database.Cursor;
 import android.database.sqlite.SQLiteDatabase;
 import android.os.Bundle;
+import android.util.Log;
+import android.view.MotionEvent;
 import android.view.View;
+import android.widget.CursorAdapter;
 import android.widget.ImageButton;
 import android.widget.Toast;
 
 import java.util.ArrayList;
 import java.util.List;
 
-public class Refrigerator extends AppCompatActivity implements Dialog.DialogListener {
+public class Refrigerator extends AppCompatActivity implements Adapter.OnFoodListener {
 
-    String str_name;
-    String str_id, str_pw, id_name, id_date, id_amount;
-    RecyclerView rv_refrigerator;
-    List<String> titles;
-    List<Integer> images;
-    Adapter list_adapter;
-    String[] list_name;
+    private String str_name;
+    private String str_id, str_pw, id_name, id_date, id_amount;
+    public RecyclerView rv_refrigerator;
+    private List<String> titles;
+    private List<Integer> images;
+    public static Adapter list_adapter;
+    private String[] list_name;
     Cursor cursor;
 
     @Override
@@ -73,41 +77,30 @@ public class Refrigerator extends AppCompatActivity implements Dialog.DialogList
             } catch (Exception e) { }
         }
 
-        list_adapter = new Adapter (this, titles, images);
+        list_adapter = new Adapter (this,titles,images,this::onFoodClick);
         GridLayoutManager gridLayoutManager = new GridLayoutManager (this,3,GridLayoutManager.VERTICAL, false);
         rv_refrigerator.setLayoutManager (gridLayoutManager);
         rv_refrigerator.setAdapter (list_adapter);
+        list_adapter.notifyDataSetChanged ();
+
 
         btn_plus.setOnClickListener (new View.OnClickListener () { // 추가 버튼 클릭시 다이얼로그 열기
             @Override
             public void onClick(View view) {
-                openDialog();
+                //openDialog();
+                Intent intent = new Intent (Refrigerator.this, Food.class);
+                intent.putExtra ("food_id", str_id);
+                startActivity (intent);
             }
         });
     }
 
-    private void openDialog() { // 다이얼로그
-        Dialog dialog = new Dialog ();
-        dialog.show (getSupportFragmentManager (),"dialog");
-    }
-
     @Override
-    public void applyTexts(String name_str, String date_str, String amount_str) { // 음식 name, date, amount을 저장
-        str_name = name_str;
-        id_name = str_id + "_" + name_str; // id + name
-        id_date = str_id + "_" + date_str; // id+ date
-        id_amount = str_id + "_" + amount_str; // id + amount
-
-        ContentValues contentValues = new ContentValues ();
-        contentValues.put (FoodList.Entry.COLUMN_NAME_NAME, id_name);
-        contentValues.put (FoodList.Entry.COLUMN_NAME_DATE, id_date);
-        contentValues.put (FoodList.Entry.COLUMN_NAME_AMOUNT,id_amount);
-        SQLiteDatabase db = DbHelper.getInstance (Refrigerator.this).getWritableDatabase ();
-        long newRowId = db.insert (FoodList.Entry.TABLE_NAME,null,contentValues);
-        if(newRowId == -1) {
-            Toast.makeText (Refrigerator.this, "문제가 발생하였습니다", Toast.LENGTH_SHORT).show ();
-        } else {
-            Toast.makeText (Refrigerator.this, "저장 완료", Toast.LENGTH_SHORT).show ();
-        }
+    public void onFoodClick(int position) {
+        String send = titles.get (position);
+        Intent intent = new Intent (Refrigerator.this, Food.class);
+        intent.putExtra ("selectedfood", send);
+        Log.v ("send", "s__" + send);
+        startActivity (intent);
     }
 }
