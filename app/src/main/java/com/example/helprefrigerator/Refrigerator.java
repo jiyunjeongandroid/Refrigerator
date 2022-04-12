@@ -17,6 +17,7 @@ import android.widget.CursorAdapter;
 import android.widget.ImageButton;
 import android.widget.Toast;
 
+import java.io.UnsupportedEncodingException;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -83,13 +84,11 @@ public class Refrigerator extends AppCompatActivity implements Adapter.OnFoodLis
         rv_refrigerator.setAdapter (list_adapter);
         list_adapter.notifyDataSetChanged ();
 
-
-        btn_plus.setOnClickListener (new View.OnClickListener () { // 추가 버튼 클릭시 다이얼로그 열기
+        btn_plus.setOnClickListener (new View.OnClickListener () { // 추가 버튼 클릭시 Food액티비티로 전환
             @Override
             public void onClick(View view) {
-                //openDialog();
                 Intent intent = new Intent (Refrigerator.this, Food.class);
-                intent.putExtra ("food_id", str_id);
+                intent.putExtra ("user_id", str_id);
                 startActivity (intent);
             }
         });
@@ -99,8 +98,8 @@ public class Refrigerator extends AppCompatActivity implements Adapter.OnFoodLis
     public void onFoodClick(int position) {
         String send = titles.get (position);
         Intent intent = new Intent (Refrigerator.this, Food.class);
-        intent.putExtra ("selectedfood", send);
-        Log.v ("send", "s__" + send);
+        intent.putExtra ("selected_id",str_id);
+        intent.putExtra ("selectors", send);
         startActivity (intent);
     }
 }

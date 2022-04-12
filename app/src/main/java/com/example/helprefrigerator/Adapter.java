@@ -2,6 +2,7 @@ package com.example.helprefrigerator;
 
 import android.content.Context;
 import android.database.Cursor;
+import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -45,7 +46,6 @@ public class Adapter extends RecyclerView.Adapter<Adapter.ViewHolder> {
         return titles.size();
     }
 
-
     public static class ViewHolder extends RecyclerView.ViewHolder implements View.OnClickListener {
         TextView title;
         ImageView gridIcon;
@@ -68,5 +68,10 @@ public class Adapter extends RecyclerView.Adapter<Adapter.ViewHolder> {
 
     public interface OnFoodListener {
         void onFoodClick(int position);
+    }
+
+    @Override
+    public long getItemId(int position) {
+        return super.getItemId (position);
     }
 }

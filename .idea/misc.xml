@@ -3,6 +3,7 @@
   <component name="DesignSurface">
     <option name="filePathToZoomLevelMap">
       <map>
+        <entry key="../../../../layout/custom_preview.xml" value="0.21481481481481482" />
         <entry key="app/src/main/res/drawable-v24/gradient_background.xml" value="0.1495" />
         <entry key="app/src/main/res/drawable-v24/gradient_refrigerator.xml" value="0.1" />
         <entry key="app/src/main/res/drawable-v24/ic_harvest.xml" value="0.1" />
