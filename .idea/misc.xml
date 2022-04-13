@@ -24,7 +24,9 @@
         <entry key="app/src/main/res/layout/activity_main.xml" value="0.22870370370370371" />
         <entry key="app/src/main/res/layout/activity_refrigerator.xml" value="0.27602081298828124" />
         <entry key="app/src/main/res/layout/activity_register.xml" value="0.41882476806640623" />
+        <entry key="app/src/main/res/layout/activity_search.xml" value="0.3098958333333333" />
         <entry key="app/src/main/res/layout/custom_grid_layout.xml" value="0.1" />
+        <entry key="app/src/main/res/layout/custom_search_layout.xml" value="0.7111611502511161" />
         <entry key="app/src/main/res/layout/dialog.xml" value="0.3814453125" />
       </map>
     </option>

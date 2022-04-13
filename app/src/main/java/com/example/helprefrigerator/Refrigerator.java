@@ -48,10 +48,18 @@ public class Refrigerator extends AppCompatActivity implements Adapter.OnFoodLis
         titles = new ArrayList<> ();
         images = new ArrayList<> ();
 
+        list_adapter = new Adapter (this,titles,images,this::onFoodClick);
+        list_adapter.notifyDataSetChanged ();
+
+        GridLayoutManager gridLayoutManager = new GridLayoutManager (this,3,GridLayoutManager.VERTICAL, false); // 한 줄에 3개씩 뿌려주기
+        rv_refrigerator.setLayoutManager (gridLayoutManager);
+        rv_refrigerator.setAdapter (list_adapter);
+
         DbHelper dbHelper = DbHelper.getInstance (Refrigerator.this); // db연결
         cursor = dbHelper.getReadableDatabase ().rawQuery ("SELECT * FROM list WHERE name LIKE ?", new String[] {str_id+"%"});
         while(cursor.moveToNext ()) {
             try {
+                String id = cursor.getString (1);
                 list_name = cursor.getString (3).split ("_");
                 switch (list_name[1]) {
                     case "apple" :
@@ -74,15 +82,18 @@ public class Refrigerator extends AppCompatActivity implements Adapter.OnFoodLis
                         titles.add ("RICE");
                         images.add (R.drawable.ic_rice);
                         break;
-                }
+                }list_adapter.notifyDataSetChanged ();
             } catch (Exception e) { }
         }
 
-        list_adapter = new Adapter (this,titles,images,this::onFoodClick);
-        GridLayoutManager gridLayoutManager = new GridLayoutManager (this,3,GridLayoutManager.VERTICAL, false);
-        rv_refrigerator.setLayoutManager (gridLayoutManager);
-        rv_refrigerator.setAdapter (list_adapter);
-        list_adapter.notifyDataSetChanged ();
+        btn_search.setOnClickListener (new View.OnClickListener () { // 찾기 버튼 클릭시 Search액티비티로 전환
+            @Override
+            public void onClick(View v) {
+                Intent intent = new Intent (Refrigerator.this,Search.class);
+                intent.putExtra ("id", str_id);
+                startActivity (intent);
+            }
+        });
 
         btn_plus.setOnClickListener (new View.OnClickListener () { // 추가 버튼 클릭시 Food액티비티로 전환
             @Override

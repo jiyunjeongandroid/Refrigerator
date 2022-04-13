@@ -30,6 +30,7 @@ public class Food extends AppCompatActivity {
         et_foodname = findViewById (R.id.et_foodname);
         et_fooddate = findViewById (R.id.et_fooddate);
         et_foodamount = findViewById (R.id.et_foodamount);
+        Button btn_foodcreate = findViewById (R.id.btn_foodcreate);
 
         Intent getIntent = getIntent (); // Refrigerator로부터 id값 받기
 
@@ -37,7 +38,7 @@ public class Food extends AppCompatActivity {
         selected_id = getIntent.getStringExtra ("selected_id"); // userId 값 받기
         selected = getIntent.getStringExtra ("selectors"); // title값 받기
 
-        if(selected != null) {
+        if(selected != null) { // Refrigerator액티비티에서 선택된 아이템들의 데이터 출력
             DbHelper dbHelper = DbHelper.getInstance (Food.this);
             Cursor selected_cursor = dbHelper.getReadableDatabase ().rawQuery ("SELECT * FROM list WHERE name LIKE ?", new String[] {"%" + selected});
             while(selected_cursor.moveToNext ()) {
@@ -49,14 +50,11 @@ public class Food extends AppCompatActivity {
                 et_foodamount.setText (selected_amount[1]);
 
                 _id = selected_cursor.getString (selected_cursor.getColumnIndexOrThrow (FoodList.Entry._ID));
-                Log.v ("id","id" + _id);
             }
         }
 
         SQLiteDatabase db = DbHelper.getInstance (this).getWritableDatabase ();
 
-
-        Button btn_foodcreate = findViewById (R.id.btn_foodcreate);
         btn_foodcreate.setOnClickListener (new View.OnClickListener () { // ok버튼 클릭시 입력받은 값들을 저장
             @Override
             public void onClick(View view) {
